@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>八戒 | 引导页</title>
+    <meta name="keywords" content="八戒导航,八戒搜索,八戒引导页" />
+
+    <!-- font-awesome 图标字体 -->
+    <link
+      href="font-awesome.min.css"
+      media="screen"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- 核心样式文件 -->
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <header class="header">
+      <!-- 动画展示区域 -->
+      <div id="victor-container"><div id="victor-output"></div></div>
+
+      <div class="welcome">
+        <p>— 欢迎访问 八戒引导页 —</p>
+      </div>
+
+      <!--向下滚动提示-->
+      <a
+        class="scroll-down-tips"
+        href="#product"
+        onclick="$('html, body').animate({scrollTop: $('.header').height()}, '500');return false;"
+      >
+        <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+        向下滚动
+      </a>
+    </header>
+    <!-- header -->
+
+    <div class="container">
+      <section class="section">
+        <a name="product"></a>
+        <h3 class="mk-sub-title">
+          <span>Product</span>
+          <span>/</span>
+          作品展示
+        </h3>
+
+        <p class="mk-title-describe">点击即可跳转相应页面</p>
+
+        <div class="mk-item-box">
+          <div class="mk-item">
+            <a href="../导航/index.html" target="_blank">
+              <article class="mk-color-item color2">
+                <div class="item-logo">
+                  <i class="comprehensive-navigation" aria-hidden="true"></i>
+                </div>
+                <h3>八戒导航</h3>
+                <p>内容丰富的综合导航网站</p>
+                <i class="light"></i>
+              </article>
+            </a>
+          </div>
+          <!-- mk-item -->
+
+          <div class="mk-item">
+            <a href="../搜索/nav/index.html" target="_blank">
+              <article class="mk-color-item color1">
+                <div class="item-logo">
+                  <i class="easy-search" aria-hidden="true"></i>
+                </div>
+                <h3>八戒搜索</h3>
+                <p>简洁大气的搜索导航网站</p>
+                <i class="light"></i>
+              </article>
+            </a>
+          </div>
+          <!-- mk-item -->
+
+          <div class="mk-item">
+            <a href="#" target="_blank">
+              <article class="mk-color-item color3">
+                <div class="item-logo">
+                  <i class="home-page" aria-hidden="true"></i>
+                </div>
+                <h3>八戒引导页</h3>
+                <p>充满艺术感的引导界面</p>
+                <i class="light"></i>
+              </article>
+            </a>
+          </div>
+          <!-- mk-item -->
+        </div>
+        <!-- mk-item-box -->
+      </section>
+      <!--  class="section" -->
+
+      <section class="section">
+        <!--  class="section" -->
+        <div class="mk-big-title">
+          <h4>About</h4>
+        </div>
+
+        <div class="about-content">
+          <p>
+            请访问温州职业技术学院官网：<a
+              href="https://www.wzvtc.cn"
+              target="_blank"
+              >温州职业技术学院</a
+            >
+          </p>
+        </div>
+      </section>
+    </div>
+    <!-- class=container -->
+
+    <footer class="footer">Copyright © 2023 八戒导航 Design by Sunshine</footer>
+
+    <!-- 返回顶部 -->
+    <div class="mk-uptop" title="点击返回顶部"></div>
+
+    <!-- jq -->
+    <script src="jquery.min.js"></script>
+    <script src="vector.js"></script>
+
+    <script>
+      $(function () {
+        // 页面加载完毕后固定页头高度，防止在某些自动隐藏工具栏的移动浏览器上出现页面抖动现象
+        $(".header").height($(window).height());
+
+        // 初始化 传入dom id
+        var victor = new Victor("victor-container", "victor-output");
+        var theme = [
+          ["#002c4a", "#005584"],
+          ["#35ac03", "#3f4303"],
+          ["#ac0908", "#cd5726"],
+          ["#18bbff", "#00486b"],
+        ];
+        var color = theme[fRandomBy(0, 3)];
+        victor(color).set();
+
+        // 监听滚动变化
+        $(window).scroll(function () {
+          if ($(window).scrollTop() < 300) {
+            $(".mk-uptop").removeClass("show");
+          } else {
+            $(".mk-uptop").addClass("show");
+          }
+        });
+
+        // 返回顶部
+        $(".mk-uptop").click(function () {
+          $("html, body").animate({ scrollTop: 0 }, "normal");
+          return false;
+        });
+
+        // 烦人的 CNZZ，输出一大堆错误信息、、清除掉！
+        console.clear();
+      });
+
+      /*******************************
+       * 函数名：生成指定范围的随机数
+       * 输入：  (under)下限   (over)上限
+       * 输出： 所需要的数值
+       * *****************************/
+      function fRandomBy(under, over) {
+        switch (arguments.length) {
+          case 1:
+            return parseInt(Math.random() * under + 1);
+          case 2:
+            return parseInt(Math.random() * (over - under + 1) + under);
+          default:
+            return 0;
+        }
+      }
+    </script>
+  </body>
+</html>
